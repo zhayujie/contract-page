@@ -1,0 +1,2 @@
+# mygit
+Only for test
