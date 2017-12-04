@@ -2,7 +2,7 @@
 void sort(double * x, double * y, double * z);
 int main(void)
 {
-    double num1, num2 ,num3;    //notepad 的中文应该可以
+    double num1, num2 ,num3;   //现在用的是vc6.0++打的字
 
     printf("Enter 3 numbers: ");
     scanf("%lf%lf%lf", &num1, &num2, &num3);
