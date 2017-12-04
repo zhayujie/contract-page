@@ -21,15 +21,15 @@ int main(void) {
     }
     int n = np;										
     while (true) {
-        int groups = n / ng;						//n是当前轮比赛的人数
+        int groups = n / ng;		                //n是当前轮比赛的人数
         int r = n % ng;
-        if (r > 0)      groups++;					//求出分组数
+        if (r > 0)      groups++;		            //求出分组数
         int lo = 0, count = 0;	
         int win_id;
         for (i = 0; i < groups; i++) {
             int hi = min(lo+ng-1, n-1);
-            win_id = get_max(lo, hi, groups);		//该组的优胜者序号
-            order[count++] = win_id;				//不断更新下一轮的
+            win_id = get_max(lo, hi, groups);	    //该组的优胜者序号
+            order[count++] = win_id;			    //不断更新下一轮的
             lo = hi+1;
         }               
         n = groups;
