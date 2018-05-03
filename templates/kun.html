@@ -1,0 +1,21 @@
+ <html>
+	<head>
+		<meta charset="UTF-8">
+		<title>zyj</title>
+<style>
+	th,td{
+		text-align: center;
+	}
+</style>
+	</head>
+
+
+  <body>
+  	<h1 align="center">鲲图鉴</h1>
+  	{% for i in n %}
+  		<div align="center">
+    		<img src="../static/{{ i }}.png">
+    	</div>
+    {% endfor %}
+</body>
+</html>
