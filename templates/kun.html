@@ -12,9 +12,10 @@
 
   <body>
   	<h1 align="center">鲲图鉴</h1>
-  	{% for i in n %}
+  	{% for name in file_names %}
   		<div align="center">
-    		<img src="../static/{{ i }}.png">
+    		<img src="../static/{{ name }}.png">
+    		<p>{{ name }}</p>
     	</div>
     {% endfor %}
 </body>
