@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def hello():
-	file_list = os.listdir('./static')
+	file_list = os.listdir('./static/kun')
 	file_names = []
 	for i in range(0, len(file_list)):
 		file_name = file_list[i].split('.')[0]
