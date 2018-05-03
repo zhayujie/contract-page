@@ -12,8 +12,11 @@ def hello():
 		file_name = file_list[i].split('.')[0]
 		if file_name:
 			file_names.append(file_name)
-	print(file_names)
 	return render_template('kun.html', file_names=file_names), 200
+
+@app.route('/evolution', methods=['GET'])
+def evolove():
+    return render_template('evolve-image.html')
 
 if __name__ == '__main__':
     app.run(port=5000)
