@@ -1,22 +1,10 @@
-# coding=utf8
-from flask import Flask, render_template
-import os
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
-def hello():
-	file_list = os.listdir('./static/kun')
-	file_names = []
-	for i in range(0, len(file_list)):
-		file_name = file_list[i].split('.')[0]
-		if file_name:
-			file_names.append(file_name)
-	return render_template('kun.html', file_names=file_names), 200
-
-@app.route('/evolution', methods=['GET'])
-def evolove():
-    return render_template('evolve-image.html')
+def signin_form():
+    return render_template('form.html'), 200
 
 if __name__ == '__main__':
-    app.run(port=5000)
+    app.run(host='0.0.0.0', port=80)
