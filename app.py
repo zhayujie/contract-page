@@ -26,7 +26,18 @@ def login():
         password = request.form.get('form-password', default='pass')
         print(username)
         print(password)
-        return redirect('/')
+        return render_template('user.html', username=username), 200
+
+@app.route('/file', methods=['GET'])
+def show_file():
+    username = request.args.get('name', default='user')
+    return render_template('file.html', username=username), 200
+
+@app.route('/contract', methods=['GET'])
+def contract_form():
+    username = request.args.get('name', default='user')
+    return render_template('contract.html', username=username), 200
+
 
 
 if __name__ == '__main__':
