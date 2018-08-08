@@ -35,15 +35,15 @@
                         <div class="col-sm-6 col-sm-offset-3 form-box">
                             <div class="form-top">
                                 <div class="form-top-left">
-                                    <h3>Login to our site</h3>
-                                    <p>Enter your username and password to log on:</p>
+                                    <h3>请输入账号和密码</h3>
+                                    <div id="message"></div>
                                 </div>
                                 <div class="form-top-right">
                                     <i class="fa fa-key"></i>
                                 </div>
                             </div>
                             <div class="form-bottom">
-                                <form role="form" action="/login" method="post" class="login-form">
+                                <form role="form" class="login-form">
                                     <div class="form-group">
                                         <label class="sr-only" for="form-username">Username</label>
                                         <input type="text" name="form-username" placeholder="Username" class="form-username form-control" id="form-username">
@@ -52,7 +52,7 @@
                                         <label class="sr-only" for="form-password">Password</label>
                                         <input type="password" name="form-password" placeholder="Password" class="form-password form-control" id="form-password">
                                     </div>
-                                    <button type="submit" class="btn">登录</button>
+                                    <button type="button" class="btn" id="login">登录</button>
                                 </form>
                             </div>
                         </div>
@@ -70,6 +70,32 @@
         <!--[if lt IE 10]>
             <script src="assets/js/placeholder.js"></script>
         <![endif]-->
+
+        <script>
+        $(function() {
+            $('#login').click(function() {
+                var name=$("#form-username").val();
+                var pass=$("#form-password").val();
+                $.ajax({
+                    type:"POST",
+                    url:"/login",
+                    data: {
+                        "form-username":name,
+                        "form-password":pass
+                    },
+                    success:function(data) {
+                        if (data == "none") {
+                            $("#message").html('用户名不存在');
+                        } else if (data == "wrong") {
+                            $("#message").html('密码不正确');
+                        } else {
+                            location.href = "/user?name=" + name;
+                        }    
+                    }
+                });
+            });
+        });
+        </script>
 
     </body>
 

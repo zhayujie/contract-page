@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 from flask import Flask, request, render_template, redirect
 
 app = Flask(__name__)
@@ -6,7 +7,7 @@ app = Flask(__name__)
 def form():
     return render_template('index.html'), 200
 
-@app.route('/enroll', methods=['GET', 'POST'])
+@app.route('/signup', methods=['GET', 'POST'])
 def enroll():
     if request.method == 'GET':
         return render_template('enroll.html'), 200
@@ -15,7 +16,10 @@ def enroll():
         password = request.form.get('form-password', default='pass')
         print(username)
         print(password)
-        return redirect('/')
+        if (username != 'zyj'):
+            return 'existed'
+        else:
+            return 'ok'
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -24,9 +28,17 @@ def login():
     else:
         username = request.form.get('form-username', default='user')
         password = request.form.get('form-password', default='pass')
-        print(username)
-        print(password)
-        return render_template('user.html', username=username), 200
+        if (username == 'zyj'):
+            return 'wrong'
+        elif (username == 'yj'):
+            return 'none'
+        else:
+            return 'right'
+
+@app.route('/user', methods=['GET', 'POST'])
+def login_success():
+    username = request.args.get('name', default='user')
+    return render_template('user.html', username=username), 200
 
 @app.route('/file', methods=['GET'])
 def show_file():
