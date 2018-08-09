@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 from flask import Flask, request, render_template, redirect
+import db
 
 app = Flask(__name__)
 
@@ -14,11 +15,10 @@ def enroll():
     else:
         username = request.form.get('form-username', default='user')
         password = request.form.get('form-password', default='pass')
-        print(username)
-        print(password)
-        if (username != 'zyj'):
+        if db.get_pass(username):
             return 'existed'
         else:
+            db.save_user(username, password)
             return 'ok'
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -28,10 +28,11 @@ def login():
     else:
         username = request.form.get('form-username', default='user')
         password = request.form.get('form-password', default='pass')
-        if (username == 'zyj'):
-            return 'wrong'
-        elif (username == 'yj'):
+        db_pass = db.get_pass(username)
+        if not db_pass:
             return 'none'
+        elif db_pass != password:
+            return 'wrong'
         else:
             return 'right'
 
