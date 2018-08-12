@@ -106,9 +106,9 @@
                 +'<option value="乙向甲">乙向甲</option>'
                 
             +"</select> "+
-                '前提条件(p)：<select type="text"  class="form-control" id="pre'+i+'"/>'+'</select> ' +
-                '达成的结果：<input type="text" class="form-control"/> ' +
-                '期限：<input type="date" class="form-control"/>'
+                '&nbsp;&nbsp;&nbsp;&nbsp;前提条件(p)：<select type="text"  class="form-control" id="pre'+i+'"/>'+'</select> ' +
+                '&nbsp;&nbsp;&nbsp;&nbsp;达成的结果：<input type="text" class="form-control"/> ' +
+                '&nbsp;&nbsp;&nbsp;&nbsp;期限：<input type="date" class="form-control"/>'
             div.innerHTML = str;
             var button = document.getElementById("button");
             back.insertBefore(div, document.getElementById("buttondiv"));
@@ -143,7 +143,7 @@
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>ss
+                            <span class="icon-bar"></span>
                         </button>
                         <div class="navbar-brand logo ">
                             <img src="../static/images/logo.png" alt=" " class="img-responsive" height="120" width="120"/> 
@@ -153,7 +153,8 @@
                         <div class="collapse navbar-collapse nav-wil links" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav ">
                                 <br></br>
-                                <li style="font-size: 20px;"><a class="scroll active" >{{ username }}</a></li>
+                                <br></br>
+                                <li style="font-size: 20px;">{{ username }}</li>
                                 
                             </ul>
                         <div class="clearfix"></div>
@@ -162,26 +163,34 @@
             </div>
         </div>
         <br></br>
+
+        <br></br>
         <div id="back" style="margin-bottom:7% ;">
             <h3 align="center">快速生成合约工具</h3>
-            <div id="table" style="margin-left: 200px;">
-                <p><b>基本信息</b></p>
+            <br></br>
+            <div id="table" style="margin-left: 150px;">
+                <h4><b>基本信息</b></h4>
             </div>
-            <div id="table" style="margin-left: 200px;">
+            <div id="table" style="margin-left: 150px;">
                 <table>
                     <tr>
                         <td>
                             合约名称：<input type="text" class="form-control" />
                         </td>
+                        &nbsp;
                         <td>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
                             编号：<input type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
                         <td>
+
                             甲方：<input type="text" class="form-control" />
                         </td>
                         <td>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             签名：<input type="text" class="form-control" />
                         </td>
                     </tr>
@@ -190,6 +199,7 @@
                             乙方：<input type="text" class="form-control" />
                         </td>
                         <td>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             签名：<input type="text" class="form-control" />
                         </td>
                     </tr>
@@ -202,12 +212,16 @@
             </div>
             <HR style="width:90%;color:deepskyblue;">
             <div style="width:80%;margin:15px auto;">
+                <br></br>
                 条款一：<select type="text" class="form-control"  id='list1'>
                     <option value="甲向乙">甲向乙</option>
                     <option value="乙向甲">乙向甲</option>
                 </select>
+                &nbsp;&nbsp;&nbsp;
                  前提条件(p)：<input type="text" class="form-control" /> 
+                 &nbsp;&nbsp;&nbsp;
                 达成的结果：<input type="text" class="form-control" />
+                &nbsp;&nbsp;&nbsp;
                  期限：<input type="date" class="form-control" />
             </div>
             <div  id="buttondiv" style="width: 100%;">
