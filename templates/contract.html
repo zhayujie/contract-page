@@ -5,12 +5,15 @@
         <meta charset="utf-8" />
         <title></title>
         <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />    
+        <link href="../static/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />    
+        <link href="../static/css/select2.css" rel="stylesheet"/>
+        <script src="../static/js/ootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../static/js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../static/js/select2.min.js" type="text/javascript" charset="utf-8"></script>
+
     </head>
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <script type="text/javascript" src="../static/js/jquery.js"></script>
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
     <style>
         td>.form-control {
             margin: 5px 8px;
@@ -106,15 +109,23 @@
                 +'<option value="乙向甲">乙向甲</option>'
                 
             +"</select> "+
-                '&nbsp;&nbsp;&nbsp;&nbsp;前提条件(p)：<select type="text"  class="form-control" id="pre'+i+'"/>'+'</select> ' +
+                '&nbsp;&nbsp;&nbsp;&nbsp;前提条件(p)：<select class="form-control" id="pre'+i+'"/>'+'</select> ' +
                 '&nbsp;&nbsp;&nbsp;&nbsp;达成的结果：<input type="text" class="form-control"/> ' +
                 '&nbsp;&nbsp;&nbsp;&nbsp;期限：<input type="date" class="form-control"/>'
+
             div.innerHTML = str;
             var button = document.getElementById("button");
             back.insertBefore(div, document.getElementById("buttondiv"));
             div.style.width = "80%";
             div.style.margin = "10px auto";
             
+            $("#pre"+i).select2({
+                tags:true,
+                language: "zh-CN",
+                multiple:true, 
+                allowClear:true,
+            });
+
             /*循环添加前置条件*/
             for(var j=1;j<=i-1;j++)
             {
@@ -123,7 +134,9 @@
                 $("#pre"+i).append("<option value='条款"+NumberToChinese(j)+"'>条款"+NumberToChinese(j)+" 延期"+"</option>");
             }
             
+
             i+=1;
+
 
             
         }
@@ -152,8 +165,8 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse nav-wil links" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav ">
-                                <br></br>
-                                <br></br>
+                                <br>
+                                <br>
                                 <li style="font-size: 20px;">{{ username }}</li>
                                 
                             </ul>
@@ -162,12 +175,12 @@
                 </div>
             </div>
         </div>
-        <br></br>
+        <br>
 
-        <br></br>
+        <br>
         <div id="back" style="margin-bottom:7% ;">
             <h3 align="center">快速生成合约工具</h3>
-            <br></br>
+            <br>
             <div id="table" style="margin-left: 150px;">
                 <h4><b>基本信息</b></h4>
             </div>
@@ -212,13 +225,23 @@
             </div>
             <HR style="width:90%;color:deepskyblue;">
             <div style="width:80%;margin:15px auto;">
-                <br></br>
+                <br>
                 条款一：<select type="text" class="form-control"  id='list1'>
                     <option value="甲向乙">甲向乙</option>
                     <option value="乙向甲">乙向甲</option>
                 </select>
                 &nbsp;&nbsp;&nbsp;
-                 前提条件(p)：<input type="text" class="form-control" /> 
+                 前提条件(p)：<select id="pre0" class="form-control"></select>
+                    <script type="text/javascript">
+                        $('#pre0').select2({
+                            tags:true,
+                            language: "zh-CN",
+                            multiple:true, 
+                            allowClear:true,
+                            data: [
+                            ]
+                        });
+                    </script>
                  &nbsp;&nbsp;&nbsp;
                 达成的结果：<input type="text" class="form-control" />
                 &nbsp;&nbsp;&nbsp;
