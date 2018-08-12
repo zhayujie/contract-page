@@ -107,7 +107,6 @@
             var str = '条款'+chinese+"：<select class='form-control' id='list"+i+"'>"
                 +'<option value="甲向乙">甲向乙</option>'
                 +'<option value="乙向甲">乙向甲</option>'
-                
             +"</select> "+
                 '&nbsp;&nbsp;&nbsp;&nbsp;前提条件(p)：<select class="form-control" id="pre'+i+'"/>'+'</select> ' +
                 '&nbsp;&nbsp;&nbsp;&nbsp;达成的结果：<input type="text" class="form-control"/> ' +
@@ -165,8 +164,8 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse nav-wil links" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav ">
-                                <br>
-                                <br>
+                                <br><br>
+                                <br><br>
                                 <li style="font-size: 20px;">{{ username }}</li>
                                 
                             </ul>
@@ -175,7 +174,7 @@
                 </div>
             </div>
         </div>
-        <br>
+        <br><br>
 
         <br>
         <div id="back" style="margin-bottom:7% ;">
@@ -225,15 +224,15 @@
             </div>
             <HR style="width:90%;color:deepskyblue;">
             <div style="width:80%;margin:15px auto;">
-                <br>
+                <br><br>
                 条款一：<select type="text" class="form-control"  id='list1'>
                     <option value="甲向乙">甲向乙</option>
                     <option value="乙向甲">乙向甲</option>
                 </select>
                 &nbsp;&nbsp;&nbsp;
-                 前提条件(p)：<select id="pre0" class="form-control"></select>
+                 前提条件(p)：<select id="pre1" class="form-control"></select>
                     <script type="text/javascript">
-                        $('#pre0').select2({
+                        $('#pre1').select2({
                             tags:true,
                             language: "zh-CN",
                             multiple:true, 
