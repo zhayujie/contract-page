@@ -7,7 +7,7 @@
         <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />    
         <link href="../static/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />    
         <link href="../static/css/select2.css" rel="stylesheet"/>
-        <script src="../static/js/ootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../static/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../static/js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../static/js/select2.min.js" type="text/javascript" charset="utf-8"></script>
 
@@ -109,8 +109,8 @@
                 +'<option value="乙向甲">乙向甲</option>'
             +"</select> "+
                 '&nbsp;&nbsp;&nbsp;&nbsp;前提条件(p)：<select class="form-control" id="pre'+i+'"/>'+'</select> ' +
-                '&nbsp;&nbsp;&nbsp;&nbsp;达成的结果：<input type="text" class="form-control"/> ' +
-                '&nbsp;&nbsp;&nbsp;&nbsp;期限：<input type="date" class="form-control"/>'
+                '&nbsp;&nbsp;&nbsp;&nbsp;达成的结果：<input type="text" class="form-control" id="res'+i+'"/> ' +
+                '&nbsp;&nbsp;&nbsp;&nbsp;期限：<input type="date" class="form-control" id="time'+i+'"/>'
 
             div.innerHTML = str;
             var button = document.getElementById("button");
@@ -128,18 +128,63 @@
             /*循环添加前置条件*/
             for(var j=1;j<=i-1;j++)
             {
-                $("#pre"+i).append("<option value='条款"+NumberToChinese(j)+"'>条款"+NumberToChinese(j)+" 满足"+"</option>");
-                $("#pre"+i).append("<option value='条款"+NumberToChinese(j)+"'>条款"+NumberToChinese(j)+" 违约"+"</option>");
-                $("#pre"+i).append("<option value='条款"+NumberToChinese(j)+"'>条款"+NumberToChinese(j)+" 延期"+"</option>");
+                $("#pre"+i).append("<option value='条款"+NumberToChinese(j)+" 满足"+"'>条款"+NumberToChinese(j)+" 满足"+"</option>");
+                $("#pre"+i).append("<option value='条款"+NumberToChinese(j)+" 违约"+"'>条款"+NumberToChinese(j)+" 违约"+"</option>");
+                $("#pre"+i).append("<option value='条款"+NumberToChinese(j)+" 延期"+"'>条款"+NumberToChinese(j)+" 延期"+"</option>");
             }
             
 
             i+=1;
-
-
-            
         }
-        
+
+        function submit() {
+            var content = [];
+
+            for (var j = 1; j < i; j++) {
+                let res = {};
+                if ($("#list"+j).val() == "甲向乙") {
+                    res['person'] = 'party_a';
+                } 
+                else {
+                    res['person'] = 'party_b';
+                }
+                res['premise'] = $("#pre"+j).val();
+                res['res'] = $("#res"+j).val();
+                res['time'] = $("#time"+j).val();
+                content.push(res)
+            }
+
+            var data = {
+                "username":$("#username").text(),
+                "contract_name":$("#contract_name").val(),
+                "contract_id":$("#contract_id").val(),
+                "party_a":$("#party_a").val(),
+                "sig_a":$("#sig_a").val(),
+                "party_b":$("#party_b").val(),
+                "sig_b":$("#sig_b").val(),
+                "valid_time":$("#valid_time").val(),
+                "content":content
+            }
+
+            for (var key in data) {
+                if (!data[key]) {
+                    alert("合约未填写完整")
+                    return
+                }
+            }   
+            alert(JSON.stringify(data))
+
+            $.ajax({
+                type:"POST",
+                url:"/save",
+                contentType:'application/json; charset=utf-8',
+                data: JSON.stringify(data),
+                success:function(data) {   
+                    alert(data);
+                    location.href="/file?name=zhayujie";   
+                }
+            });
+        }
         
         
     
@@ -151,12 +196,6 @@
                 <div class="nav-top">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
                         <div class="navbar-brand logo ">
                             <img src="../static/images/logo.png" alt=" " class="img-responsive" height="120" width="120"/> 
                         </div>
@@ -166,7 +205,7 @@
                             <ul class="nav navbar-nav ">
                                 <br><br>
                                 <br><br>
-                                <li style="font-size: 20px;">{{ username }}</li>
+                                <li style="font-size: 20px;" id="username">{{ username }}</li>
                                 
                             </ul>
                         <div class="clearfix"></div>
@@ -180,44 +219,44 @@
         <div id="back" style="margin-bottom:7% ;">
             <h3 align="center">快速生成合约工具</h3>
             <br>
-            <div id="table" style="margin-left: 150px;">
+            <div style="margin-left: 150px;">
                 <h4><b>基本信息</b></h4>
             </div>
             <div id="table" style="margin-left: 150px;">
                 <table>
                     <tr>
                         <td>
-                            合约名称：<input type="text" class="form-control" />
+                            合约名称：<input type="text" class="form-control" id="contract_name"/>
                         </td>
                         &nbsp;
                         <td>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                            编号：<input type="text" class="form-control" />
+                            编号：<input type="text" class="form-control" id="contract_id"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
 
-                            甲方：<input type="text" class="form-control" />
+                            甲方：<input type="text" class="form-control" id="party_a"/>
                         </td>
                         <td>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            签名：<input type="text" class="form-control" />
+                            签名：<input type="text" class="form-control" id="sig_a"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            乙方：<input type="text" class="form-control" />
+                            乙方：<input type="text" class="form-control" id="party_b"/>
                         </td>
                         <td>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            签名：<input type="text" class="form-control" />
+                            签名：<input type="text" class="form-control" id="sig_b"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            生效时间：<input type="date" class="form-control" />
+                            生效时间：<input type="date" class="form-control" id="valid_time"/>
                         </td>
                     </tr>
                 </table>
@@ -242,15 +281,15 @@
                         });
                     </script>
                  &nbsp;&nbsp;&nbsp;
-                达成的结果：<input type="text" class="form-control" />
+                达成的结果：<input type="text" class="form-control" id="res1" />
                 &nbsp;&nbsp;&nbsp;
-                 期限：<input type="date" class="form-control" />
+                 期限：<input type="date" class="form-control" id="time1"/>
             </div>
             <div  id="buttondiv" style="width: 100%;">
                 
                     <button type="button" onclick="add()" id="button" style="width: 20%;color: deepskyblue;font-size: 20px;float：left;display: inline;margin-left: 20% ;" class="btn btn-default">添加</button>
                 
-                    <button type="button" onclick="submit()" id="button" style="width: 20%;float: right;font-size: 20px;display: inline;margin-right: 20%" class="btn btn-warning">保存</button>              
+                    <button type="button" onclick="submit()" id="button" style="width: 20%;float: right;font-size: 20px;display: inline;margin-right: 20%" class="btn btn-warning">提交</button>              
             </div>
         </div>
     </body>

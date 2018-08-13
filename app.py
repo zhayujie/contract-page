@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 from flask import Flask, request, render_template, redirect
+import json
 import db
 
 app = Flask(__name__)
@@ -50,6 +51,16 @@ def show_file():
 def contract_form():
     username = request.args.get('name', default='user')
     return render_template('contract.html', username=username), 200
+
+@app.route('/save', methods=['POST'])
+def save():
+    args = request.get_json() 
+    print(args['content'])
+    db.save_contract(args['username'], args['contract_name'], args['contract_id'], args['party_a'], args['sig_a'],
+        args['party_b'], args['sig_b'], args['valid_time'], json.dumps(args['content']))
+
+    return 'success'
+
 
 
 
