@@ -6,26 +6,18 @@
         <title></title>
         <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />    
         <link href="../static/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />    
-
+        <script src="../static/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../static/js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
     </head>
+
     <style>
-        td>.form-control {
-            margin: 5px 8px;
-            float: right;
-            width: 60%;
-            display: inline-block;
-        }
-        
-        .form-control {
-            width: 16%;
-            display: inline-block;
-            
-        }
         
         #right {
-            width: 70%;
+            width: 75%;
             height: 550px;
             margin: 0 auto;
+            margin-left:50px;
+            margin-right:0px;
             border-style: solid; 
             border-width: 5px;
             border-color: rgba( 30,144,255,0.7);
@@ -37,6 +29,11 @@
         button{
             width:180px;           
         }
+        .table th { 
+            text-align: center;
+            vertical-align: middle!important;
+        }
+
     </style>
 
     <body>
@@ -76,6 +73,7 @@
             <div class="about-w3l w3agile">
                 <div id="center" style="margin-bottom:5% ;">
                     <div id='left' style="width: 15%;display: inline-block;margin-left: 0%;float: left;">
+                        <br><br>
                         <div>
                             <form action="/contract" method="post">
                                 <input type="hidden" id="hint" name="username" value="{{ username }}">
@@ -86,7 +84,33 @@
                             <button type="button" class="btn btn-default">所有承诺</button>
                         </div > 
                     </div >
-                    <div id='right' >                        
+
+                    <div id='right' style=" overflow:scroll; "> 
+                        <table class="table table-hover">
+                          <br>
+                          <thead>
+                            <tr>
+                              <th>编号</th>
+                              <th>合约名称</th>
+                              <th>甲方</th>
+                              <th>乙方</th>
+                              <th>生效时间</th>
+                              <th>操作</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% for l in contracts %}
+                                <tr>
+                                  <td>{{ l[0] }}</td>
+                                  <td>{{ l[1] }}</td>
+                                  <td>{{ l[2] }}</td>
+                                  <td>{{ l[3] }}</td>
+                                  <td>{{ l[4] }}</td>
+                                  <td><a href="#" class="scroll">查看</a></td>
+                                </tr>
+                            {% endfor %}
+                          </tbody>
+                        </table>                       
                     </div>
                 </div>
             </div>
