@@ -11,9 +11,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="../static/js/jquery-1.11.1.min.js"></script>
+
  </head>
 <body>
 <!--header-->
+<form id="form" action="/file" method="post">
+    <input type="hidden" id="hint" name="username" value="{{ username }}">
+</form>
+
 <div class="header" id="header">
     <div class="container" >
         <div class="nav-top">
@@ -29,14 +35,17 @@
                         <br><br>
                         <li><a class="scroll active">首页</a><span></span> </li>
                         <li><a href="#template" class="scroll" >模板 </a><span></span></li>
-                        <li><a href="/file?name={{ username }}" >我的文件</a><span></span></li>
+                        <li><button onclick='$("#form").submit()'>我的文件</button><span></span></li>
                         <li><a href="/">注销</a></li>
-                     </ul>
-                <div class="clearfix"></div>
+                    </ul>
+                    <div class="clearfix"></div>
                 </div><!-- /.navbar-collapse -->
         </div>
     </div>
 </div>
+
+
+
  <!--banner-->
 <div class="banner">
     <div class="container">

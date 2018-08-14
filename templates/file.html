@@ -77,9 +77,10 @@
                 <div id="center" style="margin-bottom:5% ;">
                     <div id='left' style="width: 15%;display: inline-block;margin-left: 0%;float: left;">
                         <div>
-                            <a href="/contract?name={{ username }}">
-                                <button type="button" class="btn btn-warning">新建承诺</button>
-                            </a>
+                            <form action="/contract" method="post">
+                                <input type="hidden" id="hint" name="username" value="{{ username }}">
+                                <button type="submit" class="btn btn-warning">新建承诺</button>
+                            </form>
                         </div>
                         <div style="margin-top: 20px;">
                             <button type="button" class="btn btn-default">所有承诺</button>

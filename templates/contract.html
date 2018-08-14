@@ -172,7 +172,6 @@
                     return
                 }
             }   
-            alert(JSON.stringify(data))
 
             $.ajax({
                 type:"POST",
@@ -180,8 +179,8 @@
                 contentType:'application/json; charset=utf-8',
                 data: JSON.stringify(data),
                 success:function(data) {   
-                    alert(data);
-                    location.href="/file?name=zhayujie";   
+                    alert("提交成功!");
+                    $("#form").submit()
                 }
             });
         }
@@ -292,6 +291,10 @@
                     <button type="button" onclick="submit()" id="button" style="width: 20%;float: right;font-size: 20px;display: inline;margin-right: 20%" class="btn btn-warning">提交</button>              
             </div>
         </div>
+
+        <form id="form" action="/file" method="post">
+            <input type="hidden" id="hint" name="username" value="{{ username }}">
+        </form>
     </body>
 
 </html>

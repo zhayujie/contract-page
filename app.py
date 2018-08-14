@@ -37,28 +37,26 @@ def login():
         else:
             return 'right'
 
-@app.route('/user', methods=['GET', 'POST'])
+@app.route('/user', methods=['POST'])
 def login_success():
-    username = request.args.get('name', default='user')
+    username = request.form.get('username', default='user')
     return render_template('user.html', username=username), 200
 
-@app.route('/file', methods=['GET'])
+@app.route('/file', methods=['POST'])
 def show_file():
-    username = request.args.get('name', default='user')
+    username = request.form.get('username', default='user')
     return render_template('file.html', username=username), 200
 
-@app.route('/contract', methods=['GET'])
+@app.route('/contract', methods=['POST'])
 def contract_form():
-    username = request.args.get('name', default='user')
+    username = request.form.get('username', default='user')
     return render_template('contract.html', username=username), 200
 
 @app.route('/save', methods=['POST'])
 def save():
     args = request.get_json() 
-    print(args['content'])
     db.save_contract(args['username'], args['contract_name'], args['contract_id'], args['party_a'], args['sig_a'],
         args['party_b'], args['sig_b'], args['valid_time'], json.dumps(args['content']))
-
     return 'success'
 
 

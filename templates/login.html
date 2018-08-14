@@ -54,6 +54,9 @@
                                     </div>
                                     <button type="button" class="btn" id="login">登录</button>
                                 </form>
+                                <form id="form" action="/user" method="post">
+                                    <input type="hidden" id="hint" name="username" value="">
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -76,7 +79,9 @@
             $('#login').click(function() {
                 var name=$("#form-username").val();
                 var pass=$("#form-password").val();
+
                 $.ajax({
+                    async:"fales",
                     type:"POST",
                     url:"/login",
                     data: {
@@ -89,7 +94,8 @@
                         } else if (data == "wrong") {
                             $("#message").html('密码不正确');
                         } else {
-                            location.href = "/user?name=" + name;
+                            $("#hint").val(name)
+                            $("#form").submit()
                         }    
                     }
                 });
