@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />    
+        <link href="../static/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />    
+        <script src="../static/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../static/js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+
+    <style>
+        
+        #right {
+            width: 75%;
+            height: 550px;
+            margin: 0 auto;
+            margin-left:50px;
+            margin-right:0px;
+            border-style: solid; 
+            border-width: 5px;
+            border-color: rgba( 30,144,255,0.7);
+            border-radius: 30px;
+            font-family:"黑体";
+            font-size: 16px;
+            display: inline-block;
+        }
+        button{
+            width:180px;           
+        }
+        .table th { 
+            text-align: center;
+            vertical-align: middle!important;
+        }
+        #table td { 
+            text-align: left;
+        }
+
+    </style>
+
+    <body>
+        <div class="header" id="header">
+            <div class="container" >
+                <div class="nav-top">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="navbar-brand logo ">
+                            <img src="../static/images/logo.png" alt=" " class="img-responsive" height="120" width="120"/> 
+                        </div>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse nav-wil links" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav ">
+                                <br><br>
+                                <br><br>
+                                <li style="font-size: 20px;">{{ contract[1] }}</li>
+                            </ul>
+                        <div class="clearfix"></div>
+                        <br><br>
+                        </div><!-- /.navbar-collapse -->
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="team" id="template">
+        <div class="container">
+            <div class="about-w3l w3agile">
+                <div id="center" style="margin-bottom:5% ;">
+                    <div id='left' style="width: 15%;display: inline-block;margin-left: 0%;float: left;">
+                        <br><br>
+                        <div>
+                            <form action="/contract" method="post">
+                                <input type="hidden" id="hint" name="username" value="{{ contract[1] }}">
+                                <button type="submit" class="btn btn-warning">新建承诺</button>
+                            </form>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <form action="/file" method="post">
+                                <input type="hidden" name="username" value="{{ contract[1] }}">
+                                <button type="submit" class="btn btn-default">所有承诺</button>
+                            </form>
+                        </div> 
+                    </div >
+
+                    <div id='right' style=" overflow:scroll; "> 
+                        <div id="back" style="margin-bottom:7% ;">
+                            <br>
+                            <font style="font-size:32px" align="center"><b>合约内容</b></font>
+                            <br><br>
+                          
+                            <div id="table" style="margin-left: 38px;">
+                                <table style="border-collapse:separate; border-spacing:10px;">
+                                    <tr>
+                                        <td align="left">
+                                            <b>名称：</b>{{ contract[2] }}
+                                        </td>
+                                        <td>
+                                            &emsp;&emsp;&emsp;
+                                            <b>编号：</b>{{ contract[3] }}
+                                    </tr>
+                                    <tr>
+                                        <td lign="left">
+
+                                            <b>甲方：</b>{{ contract[4] }}
+                                        </td>
+                                        <td>
+                                            &emsp;&emsp;&emsp;
+                                            <b>签名：</b>{{ contract[5] }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>乙方：</b>{{ contract[6] }}
+                                        </td>
+                                        <td>
+                                            &emsp;&emsp;&emsp;
+                                            <b>签名：</b>{{ contract[7] }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>生效时间：</b>{{ contract[8] }}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <table class="table">
+                              <br>
+                              <thead>
+                                <tr>
+                                  <th>条款序号</th>
+                                  <th>承诺方向</th>
+                                  <th>前提条件</th>
+                                  <th>达成结果</th>
+                                  <th>期限</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {% for l in list %}
+                                    <tr>
+                                      <td>{{ loop.index0+1 }}</td>
+                                      <td>{{ l['person'] }}</td>
+                                      <td width="245px" style="word-break:break-all;">{{ l['premise'] }}</td>
+                                      <td>{{ l['res'] }}</td>
+                                      <td>{{ l['time'] }}</td>
+                                    </tr>
+                                {% endfor %}
+                              </tbody>
+                            </table> 
+                        </div>        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script type="text/javascript">
+        function submit(i) {
+
+        }
+    </script>
+</html>

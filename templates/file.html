@@ -57,16 +57,18 @@
                             <ul class="nav navbar-nav ">
                                 <br><br>
                                 <br><br>
-                                <li style="font-size: 20px;">{{ username }}</li>
-                                
+                                <li style="font-size: 20px;"><a href="#" onclick="$('#user').submit()">{{ username }}</a></li>
                             </ul>
                         <div class="clearfix"></div>
-                        <br><br>
                         </div><!-- /.navbar-collapse -->
                 </div>
             </div>
         </div>
         <br>
+        <form id="user" action="/user" method="post">
+            <input type="hidden" name="username" value="{{ username }}">
+        </form>
+
 
         <div class="team" id="template">
         <div class="container">
@@ -86,7 +88,7 @@
                     </div >
 
                     <div id='right' style=" overflow:scroll; "> 
-                        <table class="table table-hover">
+                        <table class="table table-hover" id="table">
                           <br>
                           <thead>
                             <tr>
@@ -106,7 +108,7 @@
                                   <td>{{ l[2] }}</td>
                                   <td>{{ l[3] }}</td>
                                   <td>{{ l[4] }}</td>
-                                  <td><a href="#" class="scroll">查看</a></td>
+                                  <td><a href="#" class="scroll" onclick="submit({{ loop.index0 }})">查看</a></td>
                                 </tr>
                             {% endfor %}
                           </tbody>
@@ -115,5 +117,19 @@
                 </div>
             </div>
         </div>
+        <form id="form" action="/query" method="post">
+            <input type="hidden" id="name" name="username" value="">
+            <input type="hidden" id="contract_id" name="contract_id" value="">
+        </form>
     </body>
+
+    <script type="text/javascript">
+        function submit(i) {
+            var username = $("#hint").val();
+            var id = $("#table").find("tr").eq(i+1).find("td").eq(0).text()
+            $("#name").val(username)
+            $("#contract_id").val(id)
+            $("#form").submit()
+        }
+    </script>
 </html>

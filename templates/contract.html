@@ -142,12 +142,7 @@
 
             for (var j = 1; j < i; j++) {
                 let res = {};
-                if ($("#list"+j).val() == "甲向乙") {
-                    res['person'] = 'party_a';
-                } 
-                else {
-                    res['person'] = 'party_b';
-                }
+                res['person'] = $("#list"+j).val();
                 res['premise'] = $("#pre"+j).val();
                 res['res'] = $("#res"+j).val();
                 res['time'] = $("#time"+j).val();

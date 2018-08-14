@@ -91,6 +91,21 @@ def get_user_contracts(username):
     return contracts
 
 
+def get_contract(username, contract_id):
+    try:
+        conn = get_connect()
+        cursor = conn.cursor()
+        cursor.execute('select * from contract_content where username = %s and contract_id = %s', (username, contract_id))
+        contracts = cursor.fetchall()
+    except Exception as e:
+        print(e)        
+    finally:
+        cursor.close()
+        conn.close()
+    return contracts[0]
+
+
+
 
 if __name__ == '__main__':
     save_user("zyj", "123")
