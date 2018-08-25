@@ -220,38 +220,43 @@
                 <table>
                     <tr>
                         <td>
-                            合约名称：<input type="text" class="form-control" id="contract_name"/>
-
-                        </td>
-
-                        <td>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            生效时间：<input type="date" class="form-control" id="valid_time"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-
-                            甲方：<input type="text" class="form-control" id="party_a"/>
+                            <div>
+                            合约名称：&nbsp;&emsp;<input type="text" class="form-control" id="contract_name" style="width: 160px" />
+                            </div>
                         </td>
                         <td>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            签名：<input type="text" class="form-control" id="sig_a"/>
+                            <div style="margin-left: 65px; margin-bottom:10px">
+                            生效时间：&nbsp;<input type="date" class="form-control" id="valid_time" style="width: 160px"/>
+                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            乙方：<input type="text" class="form-control" id="party_b"/>
+                            <div>
+                            甲方：&emsp;&emsp;&emsp;&nbsp;<input type="text" class="form-control" id="party_a" style="width: 160px"/>
+                        </div>
                         </td>
                         <td>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            签名：<input type="text" class="form-control" id="sig_b"/>
+                            <div style="margin-left: 65px; margin-bottom:10px">
+                            签名：&emsp;&emsp;&nbsp;<input type="text" class="form-control" id="sig_a" style="width: 160px"/>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                                乙方：&emsp;&emsp;&emsp;&nbsp;<input type="text" class="form-control" id="party_b" style="width: 160px"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div style="margin-left: 65px; margin-bottom:10px">
+                                签名：&emsp;&emsp;&nbsp;<input type="text" class="form-control" id="sig_b" style="width: 160px" />
+                            </div>
                         </td>
                     </tr>
                 </table>
             </div>
-            <div style="margin-left: 150px;">
-                <br>
+            <div style="margin-left: 150px;margin-top: 8px">
                 <div style="float: left">
                 标的物描述：
             </div>
@@ -259,19 +264,20 @@
             </div>
             <HR style="width:90%;color:deepskyblue;">
             <div style="width:80%;margin:15px auto;">
-                <br><br>
+                <br>
                 条款一：<select type="text" class="form-control"  id='list1'>
                     <option value="甲向乙">甲向乙</option>
                     <option value="乙向甲">乙向甲</option>
                 </select>
                 &nbsp;&nbsp;&nbsp;
-                 前提条件(p)：<select id="pre1" class="form-control"></select>
+                 前提条件(p)：<select id="pre1" class="form-control" style="width: 190px"></select>
                     <script type="text/javascript">
                         $('#pre1').select2({
                             tags:true,
                             language: "zh-CN",
                             multiple:true, 
                             allowClear:true,
+                            minimumResultsForSearch: -1,
                             data: [
                             ]
                         });
