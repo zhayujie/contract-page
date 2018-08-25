@@ -1,7 +1,9 @@
 # -*- coding:utf-8 -*-
 from flask import Flask, request, render_template, redirect
 import json
+import util
 import db
+
 
 app = Flask(__name__)
 
@@ -70,4 +72,7 @@ def query():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5100, threaded=True, debug=True)
+    host = util.get_config()["host"]
+    port = int(util.get_config()["port"])
+    debug = bool(util.get_config()["debug"])
+    app.run(host=host, port=port, threaded=True, debug=debug)

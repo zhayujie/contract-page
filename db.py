@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import mysql.connector      # pip install mysql-connector
 
 '''
 create table users(
@@ -24,8 +23,16 @@ create table contract_content(
 );
 '''
 
+import mysql.connector      # pip install mysql-connector
+import util
+
+config = util.get_config()
+USER = config["user"]
+PASSWORD = config["password"]
+DATABASE = config["database"] 
+
 def get_connect():
-    conn = mysql.connector.connect(user='root', password='451284296', database='contract')    
+    conn = mysql.connector.connect(user=USER, password=PASSWORD, database=DATABASE)    
     return conn
 
 
@@ -103,8 +110,6 @@ def get_contract(username, contract_id):
         cursor.close()
         conn.close()
     return contracts[0]
-
-
 
 
 if __name__ == '__main__':
