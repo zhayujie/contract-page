@@ -74,5 +74,10 @@ def query():
 if __name__ == '__main__':
     host = util.get_config()["host"]
     port = int(util.get_config()["port"])
-    debug = bool(util.get_config()["debug"])
+    debug = util.get_config()["debug"]
+    if debug == "True":
+        debug = True
+    else:
+        debug = False
+    print(debug)
     app.run(host=host, port=port, threaded=True, debug=debug)
