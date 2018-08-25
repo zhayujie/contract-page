@@ -18,6 +18,7 @@ create table contract_content(
     party_b varchar(100) not null,
     sig_b varchar(100) not null,
     valid_time date not null,
+    object_desc varchar(500) not null,
     content varchar(1000) not null,
     primary key(id)
 );
@@ -67,13 +68,15 @@ def get_pass(username):
     else:
         return password[0][0]
 
-def save_contract(username, contract_name, contract_id, party_a, sig_a, party_b, sig_b, valid_time, content):
+def save_contract(username, contract_name, party_a, sig_a, party_b, sig_b, valid_time, object_desc, content):
+    # calculate the contract_id
+    contract_id = util.get_id(username, contract_name)
     try:
-        sql = "insert into contract_content(username, contract_name, contract_id, party_a, sig_a, party_b, sig_b, valid_time, content)" + \
-            "values(%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+        sql = "insert into contract_content(username, contract_name, contract_id, party_a, sig_a, party_b, sig_b, valid_time, object_desc, content)" + \
+            "values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
         conn = get_connect()
         cursor = conn.cursor()
-        cursor.execute(sql, (username, contract_name, contract_id, party_a, sig_a, party_b, sig_b, valid_time, content))
+        cursor.execute(sql, (username, contract_name, contract_id, party_a, sig_a, party_b, sig_b, valid_time, object_desc, content))
         conn.commit()
     except Exception as e:
         print(e)
@@ -88,7 +91,7 @@ def get_user_contracts(username):
     try:
         conn = get_connect()
         cursor = conn.cursor()
-        cursor.execute('select contract_id, contract_name, party_a, party_b, valid_time from contract_content where username = %s order by id desc', (username,))
+        cursor.execute('select contract_id, contract_name, party_a, party_b, valid_time, object_desc from contract_content where username = %s order by id desc', (username,))
         contracts = cursor.fetchall()
     except Exception as e:
         print(e)        

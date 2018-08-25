@@ -48,6 +48,7 @@ def login_success():
 def show_file():
     username = request.form.get('username', default='user')
     contracts = db.get_user_contracts(username)
+    print(contracts)
     return render_template('file.html', username=username, contracts=contracts), 200
 
 @app.route('/contract', methods=['POST'])
@@ -58,15 +59,17 @@ def contract_form():
 @app.route('/save', methods=['POST'])
 def save():
     args = request.get_json() 
-    db.save_contract(args['username'], args['contract_name'], args['contract_id'], args['party_a'], args['sig_a'],
-        args['party_b'], args['sig_b'], args['valid_time'], json.dumps(args['content']))
+    db.save_contract(args['username'], args['contract_name'], args['party_a'], args['sig_a'],
+        args['party_b'], args['sig_b'], args['valid_time'], args['object_desc'], json.dumps(args['content']))
     return 'success'
 
 @app.route('/query', methods=['POST'])
 def query():
     username = request.form.get('username', default='user')
     contract_id = request.form.get('contract_id', default='id')
+    print(contract_id)
     contract = db.get_contract(username, contract_id)
+    print(contract)
     l = json.loads(contract[9])
     return render_template('contract-content.html', contract=contract, list=l), 200
 
