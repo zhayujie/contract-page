@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<link rel="apple-touch-icon" sizes="76x76" href="../static/images/apple-icon.png">
+	<link rel="icon" type="image/png" href="../static/images/favicon.png">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>Waterproof</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+	<!--     Fonts and icons     -->
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
+
+	<!-- CSS Files -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/gsdk-bootstrap-wizard.css">
+
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" href="../static/css/demo.css">
+
+
+
+</head>
+
+<body>
+<div class="image-container set-full-height" style="background-image: url('../static/images/wizard-city.jpg')">
+    <!--   Creative Tim Branding   -->
+         <div class="logo-container">
+             <select id="sel_menu2" style="background: transparent;" class="nav-stacked">
+                     <option value="1">北京</option>
+             </select>
+         </div>
+
+    <!--   Big container   -->
+    <div class="container">
+        <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+
+            <!--      Wizard container        -->
+            <div class="wizard-container">
+                <div class="card wizard-card" data-color="green" id="wizard">
+                <form action="" method="">
+                <!--        You can switch ' data-color="green" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
+
+                    	<div class="wizard-header">
+                        	<h3>
+                        	   <b>渗 透 概 率 计 算</b><br>
+                        	   <small>This information will let us know more about your building.</small>
+                        	</h3>
+                    	</div>
+						<div class="wizard-navigation">
+							<ul id="myTab">
+	                            <li><a href="#location" data-toggle="tab" onclick="judge(0)">建筑设计参数</a></li>
+	                            <li><a href="javascript:" data-toggle="tab" onclick="judge(1)" id="tab1">屋面分部</a></li>
+	                            <li><a href="javascript:" data-toggle="tab" onclick="judge(2)" id="tab2">屋面排水技术</a></li>
+	                            <li><a href="javascript:" data-toggle="tab" onclick="judge(3)" id="tab3">渗漏结果展示</a></li>
+	                        </ul>
+						</div>
+
+                        <div class="tab-content">
+                            <div class="tab-pane" id="location">
+                              <div class="row">
+                                  <div class="col-sm-12">
+                                    <h4 class="info-text"> Let's start with the basic details</h4>
+                                  </div>
+                                  <div class="col-sm-4 col-sm-offset-1">
+                                      <div class="form-group">
+                                          <label>墙面</label><br>
+                                          <select id="walls" class="form-control">
+                                              <option value="0" selected="">女儿墙</option>
+                                              <option value="1">机房墙</option>
+                                              <option value="2">管井墙</option>
+                                              <option value="3">设备基础</option>
+                                              <option value="4">管根</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                      <div class="form-group">
+                                          <label>墙长</label>
+                                          <div class="input-group">
+                                              <input type="text" class="form-control" placeholder="" id="w0">
+                                              <span class="input-group-addon">m</span>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                      <div class="form-group">
+                                          <label>墙宽</label>
+                                          <div class="input-group">
+                                              <input type="text" class="form-control" placeholder="" id="w1">
+                                              <span class="input-group-addon">m</span>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <div class="col-sm-4 col-sm-offset-1">
+                                      <div class="form-group">
+                                          <label>泛水高</label>
+                                          <div class="input-group">
+                                              <input type="text" class="form-control" placeholder="" id="w2">
+                                              <span class="input-group-addon">m</span>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                      <div class="form-group">
+                                          <label>墙高</label>
+                                          <div class="input-group">
+                                              <input type="text" class="form-control" placeholder="" id="w3">
+                                              <span class="input-group-addon">m</span>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                      <div class="form-group">
+                                          <label>墙厚</label>
+                                          <div class="input-group">
+                                              <input type="text" class="form-control" placeholder="" id="w4">
+                                              <span class="input-group-addon">m</span>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-4 col-sm-offset-1">
+                                      <div class="form-group">
+                                          <label>组数</label>
+                                          <div class="input-group">
+                                              <input type="text" class="form-control" placeholder="" id="w5">
+                                              <span class="input-group-addon">组</span>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-3" id="branchLength">
+                                      <div class="form-group">
+                                          <label>分仓长</label>
+                                          <div class="input-group">
+                                              <input type="text" class="form-control" placeholder="" id="w6">
+                                              <span class="input-group-addon">m</span>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-3" id="branchWidth">
+                                      <div class="form-group">
+                                          <label>分仓宽</label>
+                                          <div class="input-group">
+                                              <input type="text" class="form-control" placeholder="" id="w7">
+                                              <span class="input-group-addon">m</span>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+
+                            </div>
+                            <div class="tab-pane" id="type">
+                                <h4 class="info-text">Tell us more about facilities. </h4>
+                                <div class="row">
+                                    <div class="col-sm-3 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <label>屋面分布</label>
+                                            <select class="form-control" id="room">
+                                                <option selected="" value="0">屋面结构层</option>
+                                                <option value="1">屋面保温层</option>
+                                                <option value="2">屋面防水层</option>
+                                                <option value="3">屋面隔气层</option>
+                                                <option value="4">屋面找平层</option>
+                                                <option value="5">屋面保护层</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <label>材料选择</label>
+                                            <select class="form-control" id="roomMaterial">
+                                                <option selected="" value="0">混凝土</option>
+                                                <option value="1">C30以上高标混凝土</option>
+                                                <option value="2">添加抗渗剂混凝土</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <label>厚度</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="" id="rt">
+                                                <span class="input-group-addon">m</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>面积</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="" id="ra">
+                                                <span class="input-group-addon">m<sup>2</sup></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <label>墙面分布</label>
+                                            <select class="form-control" id="wallSpace">
+                                                <option selected="" value="6">女儿墙材料</option>
+                                                <option value="7">机房墙体材料</option>
+                                                <option value="8">管井墙材料</option>
+                                                <option value="9">设备基础材料</option>
+                                                <option value="10">管根材料</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <label>材料选择</label>
+                                            <select class="form-control" id="wallMaterial">
+                                                <option value="0" selected="">混凝土</option>
+                                                <option value="1">C30以上高标混凝土</option>
+                                                <option value="2">添加抗渗剂混凝土</option>
+                                                <option value="3">二次浇捣混凝土</option>
+                                                <option value="4">二次浇捣高标混凝土</option>
+                                                <option value="5">二次浇捣抗渗混凝土</option>
+                                                <option value="6">水泥砂浆</option>
+                                                <option value="7">添加抗渗剂水泥砂浆</option>
+                                                <option value="8">粘土砖墙</option>
+                                                <option value="8">加气块墙</option>
+
+                                            </select>
+                                        </div>                                
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <label>厚度</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="" id="wt">
+                                                <span class="input-group-addon">m</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>面积</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="" readonly="readonly" id="wa">
+                                                <span class="input-group-addon">m<sup>2</sup></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="tab-pane" id="facilities">
+                                <h4 class="info-text">Choose waterproof technology.</h4>
+                                <div class="row">
+                                    <div class="col-sm-5 col-sm-offset-1">
+                                      <div class="form-group">
+                                          <label>构造</label>
+                                          <select class="form-control" id="structure">
+                                            <option value="0" selected="">正置</option>
+                                            <option value="1">倒置</option>
+                                          </select>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                      <div class="form-group">
+                                          <label>找坡</label>
+                                          <select class="form-control" id="slope">
+                                            <option selected="" value="0">无结构找坡</option>
+                                            <option value="1">有结构找坡</option>
+                                          </select>
+                                      </div>
+                                     </div>
+                                     <div class="col-sm-5 col-sm-offset-1">
+                                      <div class="form-group">
+                                          <label>雨水管材系统</label>
+                                          <select class="form-control" id="tube">
+                                            <option selected="" value="0">Φ110管重力</option>
+                                            <option value="1">水平+垂直虹吸</option>
+                                            <option value="2">Φ110管虹吸</option>
+                                          </select>
+                                       </div>
+                                      </div>
+                                      <div class="col-sm-5">
+                                       <div class="form-group">
+                                          <label>雨水口位置</label>
+                                          <select class="form-control" id="place">
+                                            <option selected="" value="0">天面外置雨水口型心垂点</option>
+                                            <option value="1">天面外置雨水口任意</option>
+                                            <option value="2">天面外置雨水口角点</option>
+                                              <option value="3">天面内置雨水口型心</option>
+                                              <option value="4">天面内置雨水口任意点</option>
+                                              <option value="5">外天沟外置雨水口型心垂点</option>
+                                              <option value="6">外天沟外置雨水口任意点</option>
+                                              <option value="7">外天沟外置雨水口角点</option>
+                                              <option value="8">内天沟外置雨水口型心垂点</option>
+                                              <option value="9">内天沟外置雨水口任意点</option>
+                                              <option value="10">内天沟外置雨水口角点</option>
+                                              <option value="11">内天沟内置雨水口型心</option>
+                                              <option value="12">内天沟内置雨水口任意点</option>
+                                          </select>
+                                       </div>
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="description">
+                                <div class="row">
+                                    <!--<h4 class="info-text"> Drop us a small description. </h4>-->
+                                    <div class="col-sm-10">
+                                         <div class="form-group">
+                                             <table class="table" id="res">
+                                                 <thead>
+                                                 <tr>
+                                                     <th>建筑分部</th>
+                                                     <th>最大日总降水量</th>
+                                                     <th>渗漏概率</th>
+                                                     <th>渗漏量</th>
+                                                     <th>吸水率</th>
+                                                     <th>吸水量</th>
+                                                 </tr>
+                                                 </thead>
+                                                 <tbody>
+                                                 <tr>
+                                                     <td>屋面</td>
+                                                     <td>195.36</td>
+                                                     <td>0.120%</td>
+                                                     <td>0.234</td>
+                                                     <td>0.030%</td>
+                                                     <td>0.059</td>
+                                                 </tr>
+                                                 <tr>
+                                                     <td>女儿墙</td>
+                                                     <td>195.36</td>
+                                                     <td>0.120%</td>
+                                                     <td>0.234</td>
+                                                     <td>0.030%</td>
+                                                     <td>0.059</td>
+                                                 </tr>
+                                                 <tr>
+                                                     <td>机房墙</td>
+                                                     <td>195.36</td>
+                                                     <td>0.120%</td>
+                                                     <td>0.234</td>
+                                                     <td>0.030%</td>
+                                                     <td>0.059</td>
+                                                 </tr>
+                                                 <tr>
+                                                     <td>管井</td>
+                                                     <td>195.36</td>
+                                                     <td>0.120%</td>
+                                                     <td>0.234</td>
+                                                     <td>0.030%</td>
+                                                     <td>0.059</td>
+                                                 </tr>
+                                                 <tr>
+                                                     <td>设备基础</td>
+                                                     <td>195.36</td>
+                                                     <td>0.120%</td>
+                                                     <td>0.234</td>
+                                                     <td>0.030%</td>
+                                                     <td>0.059</td>
+                                                 </tr>
+                                                 <tr>
+                                                     <td>管根</td>
+                                                     <td>195.36</td>
+                                                     <td>0.120%</td>
+                                                     <td>0.234</td>
+                                                     <td>0.030%</td>
+                                                     <td>0.059</td>
+                                                 </tr>
+                                                 <tr>
+                                                     <td>汇总</td>
+                                                     <td>195.36</td>
+                                                     <td>0.120%</td>
+                                                     <td>0.234</td>
+                                                     <td>0.030%</td>
+                                                     <td>0.059</td>
+                                                 </tr>
+                                                 </tbody>
+                                             </table>
+                                          </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                         <div class="form-group">
+                                            <label></label>
+                                             <div class="form-group">
+                                                 <label>年特大降雨数</label>
+                                                 <div class="input-group">
+                                                     <input type="text" class="form-control" placeholder="0" id="rain1">
+                                                     <span class="input-group-addon">次</span>
+                                                 </div>
+                                             </div>
+                                             <div class="form-group">
+                                                 <label>年大渗漏数</label>
+                                                 <div class="input-group">
+                                                     <input type="text" class="form-control" placeholder="20" id="rain2">
+                                                     <span class="input-group-addon">次</span>
+                                                 </div>
+                                             </div>
+                                             <div class="form-group">
+                                                 <label>可能出现月份</label>
+                                                     <input type="text" class="form-control" placeholder="七月下旬" id="rain3">
+                                             </div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div> <!-- wizard container -->
+        </div>
+        </div> <!-- row -->
+    </div> <!--  big container -->
+</div>
+
+</body>
+
+	<!--   Core JS Files   -->
+	<script src="../static/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+	<script src="../static/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="../static/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+
+	<!--  Plugin for the Wizard -->
+	<script src="../static/js/gsdk-bootstrap-wizard.js"></script>
+
+	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
+	<script src="../static/js/jquery.validate.min.js"></script>
+    <script src="../static/js/data.js"></script>
+    <script type="text/javascript">
+        // 重要的全局变量
+        var walls = getWalls()              // 墙体的长、宽、高 等基础参数
+        var materials = getMeterials()      // 材料的透水参数
+        var rooms = getRooms()              // 屋面和墙面的 透水性 厚度 面积等参数
+        var drainTech = []                  // 排水技术选型
+        var barnLength = 0;
+        var barnWidth = 0;
+        //$("#res tr:eq(1) td:eq(0)").html('zzzz')
+        var maxWater = 244.2
+        //var tabFinish = [1, 0, 0, 0]
+        var p1Finish = [0, 0, 0, 0, 0]
+        //var p1Finish = [1, 1, 1, 1, 1]
+        var p2Finish = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        //var p2Finish =    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+        // alert($("#walls").find("option:selected").text());
+        //var current = 0
+    
+        var tabIndex = 0;     // 当前面板
+
+        var jump = ["#type", "#facilities", "#description"];
+        var args = ["length", "width", "waterHeight", "height", "thickness", 
+          "groupNum", "barnLength", "barnWidth"];
+        var rains = getRains()
+
+        var judge = function(num) {
+            if (!num) {
+              $("#sel_menu2").removeClass("sr-only")    
+              $("#sel_menu2").addClass("nav-stacked")
+            } else {
+              $("#sel_menu2").removeClass("nav-stacked")
+              $("#sel_menu2").addClass("sr-only")
+            }
+
+            if (num - tabIndex > 1) {
+              $("#tab"+num).attr("href", "javascript:")
+              alert("请按顺序填写")
+              return;
+            }
+            if (num < tabIndex) {
+              $("#tab"+num).attr("href", jump[num-1])
+              tabIndex = num;
+              return;
+            } 
+            // num == 1
+            if (tabIndex == 0) {
+
+
+                let cur = Number($("#walls").val());
+                let isFull = 1;
+                for (let i = 0; i < 8; i++) {
+                    let arg = $("#w"+i).val()
+                    arg = Number(arg)
+                    if (!isNaN(arg)) {
+                        walls[cur][args[i]] = arg
+                        if (arg == 0) {
+                            isFull = 0;   
+                        }
+                    }           
+                }
+                p1Finish[cur] = isFull;
+                // alert(p1Finish)
+                isFull = 1;
+                for (let t = 0; t < 5; t++) {
+                    if (!p1Finish[t]) {
+                        isFull = 0;
+                        break;
+                    }
+                }
+                //tabFinish[0] = isFull;
+                //alert(tabFinish)
+                  /*
+                  for (var j = 0; j < num; j++) {
+                      if (!tabFinish[j]) {
+                          break;
+                      }
+                  }
+                  */
+                if (isFull) {
+                    $("#tab"+num).attr("href", jump[num-1])
+                    let curWall = walls[cur];
+                    curWall["girth"] = Number(((curWall["length"] + curWall["width"]) * 2 * curWall["groupNum"]).toFixed(2));
+                    // 面积 = 周长 * 高
+                    curWall["area"] = Number((curWall["girth"] * curWall["height"]).toFixed(2));
+                    // 墙水增量 = 面积 * 最大日降水量 / 1000 / 2
+                    curWall["waterDelta"] = Number((curWall["area"] * maxWater / 2000).toFixed(2));
+                    //alert(curWall["waterDelta"])
+
+
+                    // 计算墙面积 = 墙周长 * 泛水高
+                    for (let i = 0; i < 5; i++) {
+                        rooms[i+6]['area']  = walls[i]['girth'] * walls[i]['waterHeight'];
+                    }
+                    $('#wa').val(rooms[6]['area'])
+                    tabIndex = num;       // 设置面板跳转
+                } else {
+                    $("#tab"+num).attr("href", "javascript:")
+                    alert("未填写完整")
+                }
+            }
+            
+            else if (tabIndex == 1) {
+                let cur1 = Number($("#room").val());
+                let cur2 = Number($("#wallSpace").val())
+                let t1 = Number($('#rt').val())
+                let a1 = Number($('#ra').val())
+                let t2 = Number($('#wt').val())
+                if (!isNaN(t1) && !isNaN(a1) && !isNaN(t2)) {
+                    if (t1 && a1) {
+                      p2Finish[cur1] = 1
+                    } else {
+                      p2Finish[cur1] = 0
+                    }
+
+                    if (t2) {
+                      p2Finish[cur2] = 1
+                    } else {
+                      p2Finish[cur2] = 0
+                    }
+                }
+                let isFull2 = 1
+                for (let t = 0; t < 11; t++) {
+                    if (!p2Finish[t]) {
+                        isFull2 = 0;
+                        break;
+                    }
+                }
+                //alert(p2Finish)
+                if (isFull2) {
+                    $("#tab"+num).attr("href", jump[num-1])
+                    rooms[cur1]['thickness'] = t1;
+                    rooms[cur1]['area'] = a1;
+                    rooms[cur2]['thickness'] = t2;
+                    tabIndex = num;
+                } else {
+                    $("#tab"+num).attr("href", "javascript:")
+                    alert("未填写完整")
+                }
+            }
+
+            else if (tabIndex == 2) {
+              let v1 = Number($('#structure').val())
+              let v2 = Number($('#slope').val())
+              let v3 = Number($('#tube').val())
+              let v4 = Number($('#place').val())
+              let s1 = [1.0, 0.1]
+              let s2 = [1, 0.1]
+              let s3 = [1.1, 1.2, 1.0]
+              drainTech = [v1,v2,v3,v4]
+              drainDelta = [s1[v1], s2[v2], s3[v3], v4]
+              //alert(drainDelta)
+              let absorbPermeateSum = cal(walls[0]['barnLength'], walls[0]['barnWidth'],)
+              let delta = s1[v1] * s2[v2] * s3[v3] * absorbPermeateSum[v4]
+              //alert('absorbPermea' + absorbPermeateSum)
+              //alert('delta' + delta)
+              // alert(drainTech)
+              tabIndex = num;
+              $("#tab"+num).attr("href", jump[num-1])
+              if (num == 3) {
+                  caculate(delta)
+                  //alert('hello')
+              }
+            }
+        }
+
+        $(document).ready(function(){
+            var cur = 0;
+            $("#walls").change(function(){
+                let curWall = walls[cur];
+                let target = Number($(this).children('option:selected').val())
+                let isFull =1;
+                for (let i = 0; i < 8; i++) {
+                    let arg = $("#w"+i).val()
+                    arg = Number(arg)
+                    if (!isNaN(arg)) {
+                        curWall[args[i]] = arg
+                        if (arg == 0) {
+                            isFull = 0;   
+                        }
+                    } 
+                    let target_value = walls[target][args[i]];
+                    if (target_value == 0) {
+                        $("#w"+i).val("")
+                    } else {
+                        $("#w"+i).val(String(target_value))
+                    }
+                }
+                p1Finish[cur] = isFull;
+                if (target != 0) {
+                  $("#branchLength").hide()
+                  $("#branchWidth").hide()
+                } else {
+                  $("#branchLength").show()
+                  $("#branchWidth").show()
+                }
+
+                if (isFull) {
+                  // 周长 = (墙长 + 墙宽) * 组数 / 2
+                  curWall["girth"] = Number(((curWall["length"] + curWall["width"]) * 2 * curWall["groupNum"]).toFixed(2));
+                  // 面积 = 周长 * 高
+                  curWall["area"] = Number((curWall["girth"] * curWall["height"]).toFixed(2));
+                  // 墙水增量 = 面积 * 最大日降水量 / 1000 / 2
+                  curWall["waterDelta"] = Number((curWall["area"] * maxWater / 2000).toFixed(2));
+                }
+
+                // alert(p1Finish)               
+                cur = target;
+                // alert(curWall["girth"])
+                // alert(curWall["area"])
+                // alert(curWall["waterDelta"])
+            });
+      
+        }); 
+        
+        $(document).ready(function(){
+            var cur1 = 0;
+            $("#room").change(function(){
+                let target = Number($(this).children('option:selected').val());
+                let roomCur = rooms[cur1]
+                let roomTar = rooms[target] 
+                roomCur['material'] = Number($("#roomMaterial").val())
+                let arg1 = Number($("#rt").val())
+                if (!isNaN(arg1)) {
+                   roomCur['thickness'] = arg1
+                }
+                let arg2 = Number($("#ra").val())
+                if (!isNaN(arg2)) {
+                   roomCur['area'] = arg2
+                }
+                if (arg1 != 0 && arg2 != 0) {
+                    p2Finish[cur1] = 1;
+                } else {
+                    p2Finish[cur1] = 0;
+                }
+                if (roomTar['thickness'] == 0) {
+                  $("#rt").val("")
+                } else {
+                  $("#rt").val(String(roomTar['thickness']))
+                }
+
+                if (roomTar['area'] == 0) {
+                  $("#ra").val("")
+                } else {
+                  $("#ra").val(String(roomTar['area']))
+                }
+
+                let materialOptions = roomTar['materialOptions']
+                //alert(materials[10]['name'])
+                $("#roomMaterial").empty()
+                // alert(materialOptions)
+                for (let i in materialOptions) {
+                    $("#roomMaterial").append("<option value='"+materialOptions[i]+"'>"+materials[materialOptions[i]]['name']+"</option>");
+                }     
+                if (roomTar['material'] != 0) {
+                  // alert('target material' + roomTar['material'])
+                  $("#roomMaterial").val(String(roomTar['material']))
+
+                } else {
+                  // alert('target=0')
+                  $("#roomMaterial").get(0).selectedIndex=0;
+                }
+
+                // alert($("#roomMaterial").val())
+                // alert(p2Finish)
+                cur1 = target;
+            });
+      
+        });      
+        $(document).ready(function(){
+            var cur2 = 6;
+            $("#wallSpace").change(function(){
+                let target = Number($(this).children('option:selected').val());
+                let roomCur = rooms[cur2]
+                let roomTar = rooms[target]
+                roomCur['material'] = Number($("#wallMaterial").val())
+                // alert($("#wallMaterial").val())
+                let arg1 = Number($("#wt").val())
+                if (!isNaN(arg1)) {
+                   roomCur['thickness'] = arg1
+                }
+                
+                if (arg1 != 0) {
+                    p2Finish[cur2] = 1;
+                } else {
+                    p2Finish[cur2] = 0;
+                }
+                if (roomTar['thickness'] == 0) {
+                  $("#wt").val("")
+                } else {
+                  $("#wt").val(String(roomTar['thickness']))
+                }
+                $("#wa").val(roomTar['area'])
+
+                /*
+                if (roomTar['area'] == 0) {
+                  $("#ra").val("")
+                } else {
+                  $("#ra").val(String(roomTar['area']))
+                }
+                */
+                let materialOptions = roomTar['materialOptions']
+
+                // alert(p2Finish)
+
+                //alert(materials[10]['name'])
+                $("#wallMaterial").empty()
+                // alert(materialOptions)
+                for (let i = 0; i <= materialOptions; i++) {
+                    $("#wallMaterial").append("<option value='"+i+"'>"+materials[i]['name']+"</option>");
+                }     
+                if (roomTar['material'] != 0) {
+                  //alert('target material' + roomTar['material'])
+                  $("#wallMaterial").val(String(roomTar['material']))
+
+                } else {
+                  //alert('target=0')
+                  $("#wallMaterial").get(0).selectedIndex=0;
+                }
+
+                // alert($("#").val())
+                // alert(p2Finish)
+                cur2 = target;
+            });      
+        });    
+
+         $(document).ready(function(){
+            for (let i = 1; i <= 30; i++) {
+                $("#sel_menu2").append("<option value='"+i+"'>"+rains[i][0]+"</option>");
+            }   
+            $("#sel_menu2").change(function(){
+                let city = Number($(this).children('option:selected').val());
+                
+                maxWater = rains[city][3]
+                //alert(maxWater)
+                //alert($("#rain1").attr('placeholder'))
+                $("#rain1").attr('placeholder', rains[city][2])
+                $("#rain2").attr('placeholder', rains[city][1])
+                $("#rain3").attr('placeholder', rains[city][5])
+            }); 
+          });   
+
+
+        
+        var caculate = function(delta) {
+          // 结果列表的顺序： "屋面" ,"女儿墙", "机房墙", "管井墙", "设备基础", "管根"
+          let maxRain = [];           // 最大日总降水量
+          let permeateRate = [];      // 渗透概率
+          let permeateSum = [];       // 渗透量
+          let waterRate = [];         // 吸水率
+          let waterSum = [];          // 吸水量
+          let resDelta = delta;       // 吸水透水增量合计
+
+          // 屋面最大降水量 = 屋面面积 * 最大日降水量 / 1000
+          maxRain[0] =  rooms[0]['area'] * maxWater * 1.0 / 1000;
+
+          // 墙面最大降水量 = 雨水增量 * 汇水面积 / 屋面面积
+          for (let i = 1; i < 6; i++) {
+            maxRain[i] = walls[i-1]['waterDelta'] * walls[0]['barnLength'] * walls[0]['barnWidth'] * 1.0 / rooms[0]['area'];
+          }
+
+          // 计算所有屋面结构的透水量 和 吸水量
+          for (let i = 0; i < 6; i++) {
+            rooms[i]['permeateSum'] = rooms[0]['area'] * maxWater * materials[rooms[i]['material']]['permeateRate'] / 1000;
+            rooms[i]['waterSum'] = rooms[i]['thickness'] * rooms[i]['area'] * maxWater * 
+              materials[rooms[i]['material']]['absorbRate'] / 1000;
+          }
+
+          // 计算所有屋面结构的透水量 和 吸水量
+
+          for (let i = 6; i < 11; i++) {
+            rooms[i]['permeateSum'] = (maxWater + Number(walls[i-6]['waterDelta'])) * rooms[6]['area'] * 1.0 
+              / rooms[0]['area'] * materials[rooms[i]['material']]['permeateRate'];
+            rooms[i]['waterSum'] = maxWater * rooms[i]['area'] * rooms[i]['thickness'] * materials[rooms[i]['material']]['absorbRate'] / 1000;
+          }
+          // 女儿墙透水量
+          rooms[6]['permeateSum'] = maxWater * rooms[6]['area'] * materials[rooms[6]['material']]['permeateRate'] / 1000 + Number(walls[0]['waterDelta']);
+
+          // 管根吸水量
+          rooms[10]['waterSum'] = maxWater * walls[4]['length'] * walls[4]['width'] * walls[4]['waterHeight'] *
+            walls[4]['groupNum'] * materials[rooms[4]['material']]['absorbRate'] / 1000;
+
+          // 渗透概率
+          let min = materials[rooms[0]['material']]['permeateRate'];
+          for (let i = 0; i < 6; i++) {
+            if (materials[rooms[i]['material']]['permeateRate'] < min) {
+              min = materials[rooms[i]['material']]['permeateRate'];
+            }
+          }
+
+          permeateRate[0] = min * resDelta;      // 屋面
+          for (let i = 1; i < 6; i++) {
+            permeateRate[i] = materials[rooms[i+5]['material']]['permeateRate'] * resDelta;
+          }
+          //alert(materials[rooms[6]['material']]['permeateRate'])
+
+          // 渗透量
+          let min2 = rooms[0]['permeateSum'];
+          for (let i = 0; i < 6; i++) {
+            if (rooms[i]['permeateSum'] < min2) {
+              //alert(rooms[i]['permeateSum'] )
+              min2 = rooms[i]['permeateSum'];
+            }
+          }
+          permeateSum[0] = min2 * resDelta;    // 屋面
+
+          //alert(min2)
+          //alert('resDelta: ' + permeateSum[0])
+
+          for (let i = 1; i < 6; i++) {
+            permeateSum[i] = rooms[i+5]['permeateSum'] * resDelta;
+          }
+          //alert(Number(rooms[6]['permeateSum'])*resDelta + ' permeateSum')
+          //alert(rooms[6]['permeateSum'])
+          // 吸水量
+          let sum = 0;
+          for (let i = 0; i < 6; i++) {
+            sum += rooms[i]['waterSum']
+          }
+          waterSum[0] = sum * resDelta;     // 屋面
+
+          for (let i = 1; i < 6; i++) {
+            waterSum[i] = rooms[i+5]['waterSum'] * resDelta;
+          }
+
+          // 吸水率
+          waterRate[0] = waterSum[0] * 1.0 / maxRain[0];
+          for (let i = 1; i < 6; i++) {
+            waterRate[i] = materials[rooms[i+5]['material']]['absorbRate'] * resDelta;
+          }
+
+          // 显示
+          for (let i = 0; i < 6; i++) {
+            let j = i+1
+            $("#res tr:eq("+j+") td:eq(1)").html(String(maxRain[i].toFixed(2)))
+            $("#res tr:eq("+j+") td:eq(2)").html(String((permeateRate[i]*100).toFixed(3)) + '%')
+            $("#res tr:eq("+j+") td:eq(3)").html(String(permeateSum[i].toFixed(3)))
+            $("#res tr:eq("+j+") td:eq(4)").html(String((waterRate[i]*100).toFixed(3)) + '%')
+            $("#res tr:eq("+j+") td:eq(5)").html(String(waterSum[i].toFixed(3)))
+
+          }
+          let con1 = 0;
+          let con2 = 0;
+          let con3 = 0;
+          let con5 = 0; 
+          for (let i = 0; i < 6; i++) {
+            con1 += maxRain[i]
+            con2 += permeateRate[i]
+            con3 += permeateSum[i]
+            con5 += waterSum[i]
+          }
+          $("#res tr:eq(7) td:eq(1)").html(String(con1.toFixed(2)))
+          $("#res tr:eq(7) td:eq(2)").html(String((con2*100).toFixed(3)) + '%')
+          $("#res tr:eq(7) td:eq(3)").html(String(con3.toFixed(3)))
+          $("#res tr:eq(7) td:eq(4)").html("")
+          $("#res tr:eq(7) td:eq(5)").html(String(con5.toFixed(3)))
+        }
+
+
+          var cal = function(l, w) {
+            let maxZPl = [];
+            let maxTGl = [];
+            let maxPSl = [];
+            let maxPSt = [];
+            let sum = [];
+
+            maxZPl[0] = Math.sqrt(Math.pow(l / 2, 2) + Math.pow(w, 2));
+            maxZPl[1] = Math.sqrt(Math.pow(l *3 / 4, 2) + Math.pow(w, 2));
+            maxZPl[2] = Math.sqrt(Math.pow(l, 2) + Math.pow(w, 2));
+            maxZPl[3] = Math.sqrt(Math.pow(l / 2, 2) + Math.pow(w /2, 2));
+            maxZPl[4] = Math.sqrt(Math.pow(l, 2) + Math.pow(w, 2));
+            maxZPl[5] = Math.sqrt(Math.pow(w, 2) + Math.pow(w, 2));
+            maxZPl[6] = Math.sqrt(Math.pow(w, 2) + Math.pow(w, 2));
+            maxZPl[7] = Math.sqrt(Math.pow(w, 2) + Math.pow(w, 2));
+            maxZPl[8] = Math.sqrt(Math.pow(w/2, 2) + Math.pow(w/2, 2));
+            maxZPl[9] = Math.sqrt(Math.pow(w/2, 2) + Math.pow(w/2, 2));
+            maxZPl[10] = Math.sqrt(Math.pow(w/2, 2) + Math.pow(w/2, 2));
+            maxZPl[11] = Math.sqrt(Math.pow(w/2, 2) + Math.pow(w/2, 2));
+            maxZPl[12] = Math.sqrt(Math.pow(w/2, 2) + Math.pow(w/2, 2));
+
+            for (let i = 0; i < 5; i++) {
+              maxTGl[i] = 0;
+            }
+            maxTGl[5] = (l - w*2) / 2;
+            maxTGl[7] = l-w;
+            maxTGl[6] = (maxTGl[5] + maxTGl[7]) / 2;
+            maxTGl[8] = l / 2;
+            maxTGl[10] = (l - w) + maxZPl[10]
+            maxTGl[9] = (maxTGl[8] + maxTGl[10]) / 2
+            maxTGl[11] = (l - w) / 2 
+            maxTGl[12] = (l - w) + maxZPl[12]
+
+            for (let i = 0; i < 13; i++) {
+              maxPSl[i] = maxZPl[i] + maxTGl[i]
+              maxPSt[i] = maxZPl[i] / 2.6 + maxTGl[i] / 4.8
+            }
+            let min = maxPSt[0];
+            for (let i = 0; i < 13; i++) {
+              if (maxPSt[i] < min) {
+                min = maxPSt[i];
+              }
+            }
+            for (let i = 0; i < 13; i++) {
+              sum[i] = maxPSt[i] / min;
+            }
+            return sum
+        }        
+      
+             
+    </script>
+
+</html>
+

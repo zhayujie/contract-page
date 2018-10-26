@@ -1,0 +1,22 @@
+ <html>
+	<head>
+		<meta charset="UTF-8">
+		<title>result</title>
+<style>
+	th,td{
+		text-align: center;
+	}
+</style>
+	</head>
+
+
+  <body>
+  	<h1 align="center">测试结果</h1>
+  		<div align="center" style="font-size:22px">
+  		<img src="../static/{{ filename }}">
+    	<p>正常概率：{{ l[0] }}</p>
+        <p>自闭概率：{{ l[1] }}</p>
+        <p>抑郁概率：{{ l[2] }}</p>
+    	</div>
+</body>
+</html>
