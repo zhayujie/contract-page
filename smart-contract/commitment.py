@@ -32,8 +32,10 @@ def create_state_transfers(commitments):
                 new_stats2 = list(stats)
                 new_stats2[i] = 4        # Ci : bas -> vio
 
-                # 再次遍历承诺的集合，如果有承诺j 的前提 是承诺i sat或vio，则承诺j变为 bas
+                # 再次遍历承诺的集合，如果有承诺j 的前提 是承诺i sat或vio，则承诺j变为 bas (且该承诺必须本身为1)
                 for j in range(0, len(stats)):
+                    if stats[j] != 1:
+                        continue
                     connect = cs[j].pre[0]
                     if connect:
                         con_id = int(connect[0])              # 前提条件指定的承诺id
@@ -103,7 +105,7 @@ def painting(transfers):
         G.add_edge(str(transfer[0]), str(transfer[1]))
 
     G.layout('dot')
-    G.draw('/Users/zyj/Desktop/contract1.png')
+    G.draw('/Users/zyj/Desktop/contract5.png')
 
 
 if __name__ == '__main__':
@@ -112,13 +114,19 @@ if __name__ == '__main__':
     c1 = Commitment(['03', 0], 'res1', '2018')
     c2 = Commitment(['04', 0], 'res2', '2019')
     c3 = Commitment(['13', 0], 'res3', '2020')
+    c4 = Commitment(['23', 0], 'res3', '2020')
+    c5 = Commitment(['33', 0], 'res3', '2020')
+    c6 = Commitment(['44', 0], 'res3', '2020')
+    c7 = Commitment(['54', 0], 'res3', '2020')
+    c8 = Commitment(['63', 0], 'res3', '2020')
 
-    cs = [c0, c1, c2, c3]
+
+    cs = [c0, c1, c2]
     transfers = create_state_transfers(cs)
-    '''
+    
     for line in transfers:
        print(line)
-    '''
+    
     print(len(transfers))
     painting(transfers)
     
