@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>test</title>   
+    <link rel="stylesheet" href="demo.css">
+    <script src="./dagre-d3.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./d3.v4.min.js" charset="utf-8"></script>
+</head>
+<body>
+    <h>123245</h>
+    <svg width=960 height=600><g/></svg>
+
+</body>
+<script type="text/javascript">
+    
+    var g = new dagreD3.graphlib.Graph().setGraph({});
+
+    // Add nodes to the graph. The first argument is the node id. The second is
+    // metadata about the node. In this case we're going to add labels to each of
+    // our nodes.
+    g.setNode("kspacey",    { label: "Kevin Spacey" });
+    g.setNode("swilliams",  { label: "Saul Williams" });
+    g.setNode("bpitt",      { label: "Brad Pitt" });
+    g.setNode("hford",      { label: "Harrison Ford" });
+    g.setNode("lwilson",    { label: "Luke Wilson" });
+    g.setNode("kbacon",     { label: "Kevin Bacon" });
+
+    // Add edges to the graph. The first argument is the edge id. Here we use null
+    // to indicate that an arbitrary edge id can be assigned automatically. The
+    // second argument is the source of the edge. The third argument is the target
+    // of the edge. The last argument is the edge metadata.
+    g.setEdge("kspacey",   "swilliams", { label: "K-PAX" });
+    g.setEdge("swilliams", "kbacon",    { label: "These Vagabond Shoes" });
+    g.setEdge("bpitt",     "kbacon",    { label: "Sleepers" });
+    g.setEdge("hford",     "lwilson",   { label: "Anchorman 2" });
+    g.setEdge("lwilson",   "kbacon",    { label: "Telling Lies in America" });
+
+    var svg = d3.select("svg"),
+        inner = svg.select("g");
+
+    var zoom = d3.zoom().on("zoom", function() {
+      inner.attr("transform", d3.event.transform);
+    });
+    svg.call(zoom);
+    // Set up zoom support
+
+    // Create the renderer
+    var render = new dagreD3.render();
+
+    // Run the renderer. This is what draws the final graph.
+    render(inner, g);
+
+    // Center the graph
+    
+    var initialScale = 0.75;
+    svg.call(zoom.transform, d3.zoomIdentity.translate((svg.attr("width") - g.graph().width * initialScale) / 2, 20).scale(initialScale));
+
+    svg.attr('height', g.graph().height * initialScale + 40);
+    
+
+</script>
+<script src="demo.js"></script>
+
+</html>
