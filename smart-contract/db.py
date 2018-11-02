@@ -68,9 +68,9 @@ def get_pass(username):
     else:
         return password[0][0]
 
-def save_contract(username, contract_name, party_a, sig_a, party_b, sig_b, valid_time, object_desc, content):
+def save_contract(username, contract_name, contract_id, party_a, sig_a, party_b, sig_b, valid_time, object_desc, content):
     # calculate the contract_id
-    contract_id = util.get_id(username, contract_name)
+    #contract_id = util.get_id(username, contract_name)
     try:
         sql = "insert into contract_content(username, contract_name, contract_id, party_a, sig_a, party_b, sig_b, valid_time, object_desc, content)" + \
             "values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"

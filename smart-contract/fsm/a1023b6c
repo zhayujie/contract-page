@@ -1,0 +1,25 @@
+{
+  "InitStatus": "[1]",
+  "FsmArray": [
+    {
+      "CurrentStatus": "[1]",
+      "Action": "exp-2018-11-02",
+      "NewStatus": "[5]"
+    },
+    {
+      "CurrentStatus": "[1]",
+      "Action": "",
+      "NewStatus": "[2]"
+    },
+    {
+      "CurrentStatus": "[2]",
+      "Action": "",
+      "NewStatus": "[3]"
+    },
+    {
+      "CurrentStatus": "[2]",
+      "Action": "vio-2018-11-02",
+      "NewStatus": "[4]"
+    }
+  ]
+}

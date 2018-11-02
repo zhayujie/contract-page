@@ -153,9 +153,11 @@
                 "username":$("#username").text(),
                 "contract_name":$("#contract_name").val(),
                 "party_a":$("#party_a").val(),
-                "sig_a":$("#sig_a").val(),
+                //"sig_a":$("#sig_a").val(),
+                "sig_a": "111",
                 "party_b":$("#party_b").val(),
-                "sig_b":$("#sig_b").val(),
+                //"sig_b":$("#sig_b").val(),
+                "sig_b": "111",
                 "valid_time":$("#valid_time").val(),
                 "object_desc":$("#desc").val(),
                 "content":content
@@ -238,22 +240,11 @@
                         </td>
                         <td>
                             <div style="margin-left: 65px; margin-bottom:10px">
-                            签名：&emsp;&emsp;&nbsp;<input type="text" class="form-control" id="sig_a" style="width: 160px"/>
+                            乙方：&emsp;&emsp;&nbsp;<input type="text" class="form-control" id="party_b" style="width: 160px"/>
                         </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            <div>
-                                乙方：&emsp;&emsp;&emsp;&nbsp;<input type="text" class="form-control" id="party_b" style="width: 160px"/>
-                            </div>
-                        </td>
-                        <td>
-                            <div style="margin-left: 65px; margin-bottom:10px">
-                                签名：&emsp;&emsp;&nbsp;<input type="text" class="form-control" id="sig_b" style="width: 160px" />
-                            </div>
-                        </td>
-                    </tr>
+                    
                 </table>
             </div>
             <div style="margin-left: 150px;margin-top: 8px">
@@ -262,6 +253,7 @@
             </div>
                 &nbsp;<textarea class="form-control" id="desc" rows="2" cols="10" style="width: 160px"></textarea>
             </div>
+            <br>
             <HR style="width:90%;color:deepskyblue;">
             <div style="width:80%;margin:15px auto;">
                 <br>

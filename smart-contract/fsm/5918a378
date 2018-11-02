@@ -1,0 +1,25 @@
+{
+  "InitStatus": "[1]",
+  "FsmArray": [
+    {
+      "CurrentStatus": "[1]",
+      "Action": "timeout0",
+      "NewStatus": "[5]"
+    },
+    {
+      "CurrentStatus": "[1]",
+      "Action": "sf",
+      "NewStatus": "[2]"
+    },
+    {
+      "CurrentStatus": "[2]",
+      "Action": "ssf",
+      "NewStatus": "[3]"
+    },
+    {
+      "CurrentStatus": "[2]",
+      "Action": "vio2018-10-05",
+      "NewStatus": "[4]"
+    }
+  ]
+}

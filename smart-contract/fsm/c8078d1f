@@ -1,0 +1,80 @@
+{
+  "InitStatus": "[1, 1]",
+  "FsmArray": [
+    {
+      "CurrentStatus": "[1, 1]",
+      "Action": "exp-2018-11-22",
+      "NewStatus": "[5, 5]"
+    },
+    {
+      "CurrentStatus": "[1, 1]",
+      "Action": "",
+      "NewStatus": "[2, 1]"
+    },
+    {
+      "CurrentStatus": "[1, 1]",
+      "Action": "exp-2018-11-07",
+      "NewStatus": "[1, 5]"
+    },
+    {
+      "CurrentStatus": "[1, 5]",
+      "Action": "exp-2018-11-22",
+      "NewStatus": "[5, 5]"
+    },
+    {
+      "CurrentStatus": "[1, 5]",
+      "Action": "",
+      "NewStatus": "[2, 5]"
+    },
+    {
+      "CurrentStatus": "[2, 5]",
+      "Action": "\u8d54\u94b1",
+      "NewStatus": "[3, 5]"
+    },
+    {
+      "CurrentStatus": "[2, 5]",
+      "Action": "vio-2018-11-22",
+      "NewStatus": "[4, 5]"
+    },
+    {
+      "CurrentStatus": "[2, 1]",
+      "Action": "\u8d54\u94b1",
+      "NewStatus": "[3, 2]"
+    },
+    {
+      "CurrentStatus": "[2, 1]",
+      "Action": "vio-2018-11-22",
+      "NewStatus": "[4, 1]"
+    },
+    {
+      "CurrentStatus": "[2, 1]",
+      "Action": "exp-2018-11-07",
+      "NewStatus": "[2, 5]"
+    },
+    {
+      "CurrentStatus": "[2, 5]",
+      "Action": "\u8d54\u94b1",
+      "NewStatus": "[3, 5]"
+    },
+    {
+      "CurrentStatus": "[2, 5]",
+      "Action": "vio-2018-11-22",
+      "NewStatus": "[4, 5]"
+    },
+    {
+      "CurrentStatus": "[4, 1]",
+      "Action": "exp-2018-11-07",
+      "NewStatus": "[4, 5]"
+    },
+    {
+      "CurrentStatus": "[3, 2]",
+      "Action": "\u8fd8\u94b1",
+      "NewStatus": "[3, 3]"
+    },
+    {
+      "CurrentStatus": "[3, 2]",
+      "Action": "vio-2018-11-07",
+      "NewStatus": "[3, 4]"
+    }
+  ]
+}

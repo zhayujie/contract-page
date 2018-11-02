@@ -28,6 +28,21 @@ def get_id(username ,contract_name):
     str_hash = hashlib.sha256(str_id.encode()).hexdigest()
     return str_hash[-8:]
 
+def process_code(filename):
+    st = ''
+    with open('./code/' + filename, 'r') as fs:
+        lines = fs.readlines()
+        for line in lines:
+            line = line.replace(' ', '&nbsp;&nbsp;')
+            st = st + line.strip() + '<br>'
+        return st
+def read_fsm(filename):
+    with open('./fsm/' + filename, 'r') as fs:
+        fsm = json.load(fs)
+    return fsm
+
+
 if __name__ == '__main__':
-    print(get_config())
-    print(get_id("zyj", "hangkong"))
+    print(process_code('b67e233d.go'))
+    #print(get_config())
+    #print(get_id("zyj", "hangkong"))
