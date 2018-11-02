@@ -76,8 +76,8 @@ var states = {
   },
 
   "SYN SENT": {
-    description: "represents waiting for a matching connection<br>" +
-                 "request after having sent a connection<br>request."
+    description: "represents waiting for a matching connection " +
+                 "request after having sent a connection request."
   },
 
   "SYN RCVD": {
@@ -128,25 +128,11 @@ var states = {
     description: "represents waiting for enough time to pass to be " +
                  "sure the remote TCP received the acknowledgment of its " +
                  "connection termination request."
-  },
-
-  "abc": {
-    description: "represents waiting for enough time to pass to be " +
-                 "sure the remote TCP received the acknowledgment of its " +
-                 "connection termination request."
-  },
-
-  "[1,0,2]": {
-    description: "represents waiting for enough time to pass to be " +
-                 "sure the remote TCP received the acknowledgment of its " +
-                 "connection termination request."
   }
-
 };
 
 // Add states to the graph, set labels, and style
 Object.keys(states).forEach(function(state) {
-  //alert(state)
   var value = states[state];
   value.label = state;
   value.rx = value.ry = 5;
@@ -172,8 +158,6 @@ g.setEdge("FINWAIT-2",  "TIME WAIT",  { label: "rcv FIN" });
 g.setEdge("CLOSING",    "TIME WAIT",  { label: "rcv ACK of FIN" });
 g.setEdge("LAST-ACK",   "CLOSED",     { label: "rcv ACK of FIN" });
 g.setEdge("TIME WAIT",  "CLOSED",     { label: "timeout=2MSL" });
-g.setEdge("LISTEN",   "[1,0,2]",     { label: "rcv ACK of FIN" });
-g.setEdge("[1,0,2]",   "abc",     { label: "rcv ACK of FIN" });
 
 // Create the renderer
 var render = new dagreD3.render();
