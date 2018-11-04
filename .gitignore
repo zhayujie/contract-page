@@ -3,3 +3,7 @@
 __pycache__
 config.json
 venv
+*.sol
+*.go
+fsm
+code
